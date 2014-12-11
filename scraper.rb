@@ -55,7 +55,7 @@ def insert_item(fields,values,table)
   i=0
   values.each{ |value|
     key = fields[i]
-    break if key=="Formation" or key == nil
+    break if key=="Formation" || key == nil
     item[key]=value
     i=i.next
   }
