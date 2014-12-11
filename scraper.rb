@@ -50,12 +50,12 @@ end
 
 def insert_item(fields,values,table)
   item ={}
-  return if fields[0] == ""
+  return if fields[0] == ""|| fields[0] == nil
   puts fields[0]
   i=0
   values.each{ |value|
     key = fields[i]
-    break if key=="Formation" || key == nil
+    break if key=="Formation" 
     item[key]=value
     i=i.next
   }
