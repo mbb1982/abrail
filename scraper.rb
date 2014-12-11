@@ -15,7 +15,7 @@ def demu
       first_row = false
     else
       values = row.search("td").map{|field| field.inner_text.gsub!(/\t|\n|\./,"")}
-      insert(fields,values)
+      insert_item(fields,values)
     end
   
   }
