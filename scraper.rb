@@ -12,6 +12,7 @@ def demu
   demu_page.search('table tr').each{ |row|
     if first_row
       fields= row.search("td").map{|field| field.inner_text.sub(/Op'r/,"operator").sub(/Set No/,"Number").gsub!(/\t|\n|\./,"")}
+      first_row = false
     else
       values = row.search("td").map{|field| field.inner_text.gsub!(/\t|\n|\./,"")}
       insert(fields,values)
