@@ -5,6 +5,7 @@ agent = Mechanize.new
 
 
 def demu
+  agent = Mechanize.new
   demu_page = agent.get("http://abrail.co.uk/demuformations.htm")
   first_row = true
   fields = []
