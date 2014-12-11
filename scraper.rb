@@ -1,3 +1,9 @@
+require 'scraperwiki'
+require 'nokogiri'
+require 'mechanize'
+agent = Mechanize.new
+
+
 def demu
   demu_page = agent.get("http://abrail.co.uk/demuformations.htm")
   first_row = true
