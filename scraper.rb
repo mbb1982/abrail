@@ -22,9 +22,12 @@ def insert_item(fields,values,table)
   i=0
   values.each{
     key = fields[i]
-    break if key="Formation"
+    break if key=="Formation"
     item[key]=value
     i=i.next
   }
   ScraperWiki::save_sqlite(['Number'],item,"stock")
 end
+
+
+demu
