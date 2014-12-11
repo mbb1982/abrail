@@ -24,6 +24,30 @@ def demu
   
 end
 
+def dmu
+  agent = Mechanize.new
+  dmu_page = agent.get("http://abrail.co.uk/dmuformations.htm")
+  first_row = true
+  fields = []
+  dmu_page.search('table tr').each{ |row|
+    if first_row
+      fields= row.search("td").map{|field| field.inner_text.sub(/Op'r/,"operator").sub(/Set No/,"Number").gsub(/\/| /,"_").gsub!(/\t|\n|\./,"")}
+      first_row = false
+    else
+      values = row.search("td").map{|field| field.inner_text.gsub!(/\t|\n|\./,"")}
+      insert_item(fields,values,"stock")
+    end
+  
+  }
+  
+  
+  
+end
+
+
+
+
+
 def insert_item(fields,values,table)
   item ={}
   return if fields[0] == ""
@@ -40,3 +64,4 @@ end
 
 
 demu
+dmu
