@@ -29,7 +29,7 @@ def insert_item(fields,values,table)
   return if fields[0] == ""
   puts fields[0]
   i=0
-  values.each{
+  values.each{ |value|
     key = fields[i]
     break if key=="Formation"
     item[key]=value
