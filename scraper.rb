@@ -15,7 +15,7 @@ def demu
       first_row = false
     else
       values = row.search("td").map{|field| field.inner_text.gsub!(/\t|\n|\./,"")}
-      insert_item(fields,values)
+      insert_item(fields,values,"stock")
     end
   
   }
@@ -35,7 +35,7 @@ def insert_item(fields,values,table)
     item[key]=value
     i=i.next
   }
-  ScraperWiki::save_sqlite(['Number'],item,"stock")
+  ScraperWiki::save_sqlite(['Number'],item,table)
 end
 
 
