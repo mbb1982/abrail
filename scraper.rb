@@ -50,8 +50,8 @@ end
 
 def insert_item(fields,values,table)
   item ={}
-  return if fields[0] == ""|| fields[0] == nil
-  puts fields[0]
+  return if values[0] == ""|| values[0] == nil
+  puts values[0]
   i=0
   values.each{ |value|
     key = fields[i]
