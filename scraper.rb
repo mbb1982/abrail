@@ -1,24 +1,30 @@
-# This is a template for a Ruby scraper on Morph (https://morph.io)
-# including some code snippets below that you should find helpful
+def demu
+  demu_page = agent.get("http://abrail.co.uk/demuformations.htm")
+  first_row = true
+  fields = []
+  demu_page.search('table tr').each{ |row|
+    if first_row
+      fields= row.search("td").map{|field| field.inner_text.sub(/Op'r/,"operator").sub(/Set No/,"Number").gsub!(/\t|\n|\./,"")}
+    else
+      values = row.search("td").map{|field| field.inner_text.gsub!(/\t|\n|\./,"")}
+      insert(fields,values)
+    end
+  
+  }
+  
+  
+  
+end
 
-# require 'scraperwiki'
-# require 'mechanize'
-#
-# agent = Mechanize.new
-#
-# # Read in a page
-# page = agent.get("http://foo.com")
-#
-# # Find somehing on the page using css selectors
-# p page.at('div.content')
-#
-# # Write out to the sqlite database using scraperwiki library
-# ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
-#
-# # An arbitrary query against the database
-# ScraperWiki.select("* from data where 'name'='peter'")
-
-# You don't have to do things with the Mechanize or ScraperWiki libraries. You can use whatever gems are installed
-# on Morph for Ruby (https://github.com/openaustralia/morph-docker-ruby/blob/master/Gemfile) and all that matters
-# is that your final data is written to an Sqlite database called data.sqlite in the current working directory which
-# has at least a table called data.
+def insert_item(fields,values,table)
+  item ={}
+  return if fields[0] == ""
+  i=0
+  values.each{
+    key = fields[i]
+    break if key="Formation"
+    item[key]=value
+    i=i.next
+  }
+  ScraperWiki::save_sqlite(['Number'],item,"stock")
+end
