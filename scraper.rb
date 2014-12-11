@@ -26,6 +26,7 @@ end
 def insert_item(fields,values,table)
   item ={}
   return if fields[0] == ""
+  puts fields[0]
   i=0
   values.each{
     key = fields[i]
